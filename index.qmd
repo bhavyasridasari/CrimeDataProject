@@ -1,0 +1,27 @@
+---
+title: "Crime Project"
+---
+
+# Welcome to the STAT Final Project
+
+Welcome to the **STAT Final Project** website! This project explores crime data through statistical analysis and meaningful visualizations, aiming to uncover patterns and insights about crime severity, victim demographics, and crime categories.
+
+The dataset used in this project is sourced from [Crime Data](https://catalog.data.gov/dataset/crime-data-from-2020-to-present). This comprehensive dataset includes detailed records such as crime types, victim demographics (age, sex, and other attributes), and crime severity, allowing for robust analyses. This dataset was chosen because of its relevance to current societal issues and its detailed breakdown, which enables us to explore relationships between various factors and crime trends.
+
+### Pages:
+
+-   [Introduction](introduction.qmd): Learn about our project goals, background, and objectives. This section also provides an overview of the dataset, its attributes, and why it was chosen for this analysis.
+
+-   [Research Questions](research_questions.qmd): Understand the core research questions guiding the project.
+
+-   [Methodology & Visualizations](methodology.qmd): Discover the statistical techniques and visualizations we used to explore the dataset and answer the research questions.
+
+-   [Conclusion](conclusion.qmd): Review the final outcomes of the project, key findings, and their implications.
+
+-   [Source Code](source_code.qmd): Access the complete source code to replicate the analyses performed in this project.
+
+-   [References](references.qmd): Find the citations and references for the dataset, tools, and techniques used throughout the project.
+
+-   
+
+-   [About Us](about.qmd): Learn about the team members!

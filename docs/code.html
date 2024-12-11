@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Source Code – STAT Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT Final Project</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./introduction.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research_questions.html"> 
+<span class="menu-text">Research Questions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology &amp; Visualizations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./conclusion.html"> 
+<span class="menu-text">Conclusion</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./code.html" aria-current="page"> 
+<span class="menu-text">Source Code</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./references.html"> 
+<span class="menu-text">References</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About Us</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Source Code</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>library(tidyverse) library(dplyr) library(ggplot2) library(reshape2) library(lmtest) crime = read.csv(“C:/Users/bhavy/Documents/Fall 2024/STAT/Final Project/STAT FINAL PROJECT/Crime data.csv”, stringsAsFactors = FALSE) head(crime) summary(crime) cat(“Number of rows:”, nrow(crime), “”) cat(“Number of columns:”, ncol(crime), “”) colnames(crime) crime = crime %&gt;% select( -DR_NO, -AREA, -<code>TIME.OCC</code>, -<code>Part.1.2</code>,<br>
+-Mocodes,<br>
+-Status,<br>
+-<code>Crm.Cd.2</code>,<br>
+-<code>Crm.Cd.3</code>,<br>
+-<code>Crm.Cd.4</code>,<br>
+-<code>Cross.Street</code> ) #Printing the sum of na values present in the dataset sum(is.na(crime))</p>
+<p>crime = na.omit(crime)</p>
+<p>crime = crime %&gt;% distinct()</p>
+<p>convert_dates = function(date_column) { dates = as.Date(date_column, format = “%m/%d/%Y %H:%M”) if (any(is.na(dates))) { dates[is.na(dates)] = as.Date(date_column[is.na(dates)], format = “%m/%d/%Y %I:%M %p”) } return(dates) }</p>
+<p>crime<span class="math inline">\(Date.Rptd = convert_dates(crime\)</span>Date.Rptd) crime<span class="math inline">\(DATE.OCC = convert_dates(crime\)</span>DATE.OCC)</p>
+<p>summary(crime<span class="math inline">\(Date.Rptd)
+summary(crime\)</span>DATE.OCC)</p>
+<p>crime<span class="math inline">\(Vict.Age = ifelse(crime\)</span>Vict.Age &lt; 0, NA, crime$Vict.Age)</p>
+<p>crime<span class="math inline">\(LAT = ifelse(crime\)</span>LAT == 0, NA, crime<span class="math inline">\(LAT)
+crime\)</span>LON = ifelse(crime<span class="math inline">\(LON == 0, NA, crime\)</span>LON)</p>
+<p>summary(crime)</p>
+<p>cleaned_Crime_Data = crime</p>
+<p>write.csv(crime, “Cleaned_Crime_Data.csv”, row.names = FALSE) head(cleaned_Crime_Data)</p>
+<p>crime_counts_per_area = crime %&gt;% group_by(AREA.NAME) %&gt;% summarise(Total_Crimes = n(), .groups = ‘drop’) %&gt;% arrange(desc(Total_Crimes)) # Sort by the number of crimes, highest first</p>
+<p>print(crime_counts_per_area)</p>
+<p>crime_data_clean = read.csv(“Cleaned_Crime_Data.csv”)</p>
+<p>crime_data_clean<span class="math inline">\(Vict.Sex = recode(
+    crime_data_clean\)</span>Vict.Sex, “M” = “Male”, “F” = “Female”, “X” = “Non-Binary”, “H” = “Other”, .default = “Unknown” )</p>
+<p>crime_filtered = crime_data_clean %&gt;% filter(Vict.Sex %in% c(“Male”, “Female”, “Non-Binary”))</p>
+<p>crime_filtered = crime_filtered %&gt;% filter(Vict.Age &gt; 0 &amp; Vict.Age &lt;= 100)</p>
+<p>crime_by_sex_age = crime_filtered %&gt;% group_by(Vict.Sex, Vict.Age) %&gt;% summarise(Total_Crimes = n(), .groups = “drop”)</p>
+<p>ggplot(crime_by_sex_age, aes(x = Vict.Age, y = Total_Crimes, color = Vict.Sex)) + geom_point(alpha = 0.6) + labs( title = “Crime Counts by Victim Age and Sex”, x = “Victim Age”, y = “Total Crimes”, color = “Victim Sex” ) + theme_minimal()</p>
+<pre><code>crime_by_premise = crime %&gt;%</code></pre>
+<p>group_by(Premis.Desc) %&gt;% summarise(Total_Crimes = n()) %&gt;% arrange(desc(Total_Crimes))</p>
+<p>ggplot(crime_by_premise[1:10, ], aes(x = reorder(Premis.Desc, -Total_Crimes), y = Total_Crimes)) + geom_bar(stat = “identity”, fill = “steelblue”) + labs(title = “Top 10 Crime Locations by Premise”, x = “Type of Premise”, y = “Number of Crimes”) + theme_minimal() + theme(axis.text.x = element_text(angle = 90, hjust = 1))</p>
+<p>filtered_data = crime %&gt;% filter(Vict.Age &gt; 0 &amp; Vict.Age &lt; 100)</p>
+<p>top_crimes = filtered_data %&gt;% group_by(Crm.Cd.Desc) %&gt;% summarise(Total = n()) %&gt;% top_n(5, Total)</p>
+<p>filtered_data %&gt;% filter(Crm.Cd.Desc %in% top_crimes$Crm.Cd.Desc) %&gt;% ggplot(aes(x = Vict.Age, fill = Crm.Cd.Desc)) + geom_histogram(bins = 30, position = “dodge”) + labs(title = “Distribution of Victim Age by Crime Type”, x = “Victim Age”, y = “Frequency”) + theme_minimal()</p>
+<p><strong>Research Question 1</strong></p>
+<p>What is the relationship between crime types and premises categories, and how are specific crime types distributed across different premises?</p>
+<p>crime<span class="math inline">\(Crime_Category = cut(crime\)</span>Crm.Cd, breaks = c(0, 200, 400, 600, 800, 1000), labels = c(“Category 1”, “Category 2”, “Category 3”, “Category 4”, “Category 5”))</p>
+<p>crime<span class="math inline">\(Premises_Category = cut(crime\)</span>Premis.Cd, breaks = c(0, 200, 400, 600, 800, 1000), labels = c(“Zone 1”, “Zone 2”, “Zone 3”, “Zone 4”, “Zone 5”))</p>
+<p>aggregated_table = table(crime<span class="math inline">\(Crime_Category, crime\)</span>Premises_Category)</p>
+<p>aggregated_chisq_test = chisq.test(aggregated_table)</p>
+<p>print(aggregated_chisq_test)</p>
+<p>aggregated_df = as.data.frame(aggregated_table) colnames(aggregated_df) &lt;- c(“Crime_Category”, “Premises_Category”, “Frequency”)</p>
+<p>ggplot(aggregated_df, aes(x = Premises_Category, y = Crime_Category, fill = Frequency)) + geom_tile(color = “white”) + # Adding white borders for clarity geom_text(aes(label = Frequency), color = “black”, size = 3) + # Adding labels to cells scale_fill_gradient(low = “violet”, high = “purple”) +<br>
+labs( title = “Crime Types by Premises Categories (Heatmap)”, x = “Premises Categories”, y = “Crime Categories”, fill = “Frequency” ) + theme_minimal() + theme( plot.title = element_text(hjust = 0.5, size = 14, face = “bold”),<br>
+axis.text.x = element_text(angle = 45, hjust = 1),<br>
+legend.position = “right” )</p>
+<p>Conclusion:</p>
+<p>The research question investigated the relationship between crime types and premises categories and examined the distribution of specific crime types across various premises.</p>
+<p>Key Findings:</p>
+<ul>
+<li><p>The heatmap effectively illustrates the frequency distribution of crime types across premises categories.</p></li>
+<li><p>Darker shades in the heatmap indicate higher crime frequencies, providing a clear visual representation of hotspots for specific crime types.</p></li>
+<li><p>squared test yielded a statistically significant result . This indicates that there is a significant association between the type of crime and the category of premises</p></li>
+</ul>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><p>Crimes in Category 4 (e.g., Zone 3) show the highest frequency, indicating a potential hotspot or higher incidence in that combination of crime and premises.</p></li>
+<li><p>Similarly, Category 2 has a noticeable frequency across multiple premises, particularly in zones associated with residential or commonly populated areas.</p></li>
+<li><p>Less frequent crime categories (e.g., Category 1 and Category 5) appear to be concentrated in limited premises zones.</p></li>
+</ul>
+<p><strong>Answer to Research Question 1:</strong> The analysis confirms a significant relationship between crime types and premises categories. The frequency distribution suggests that certain crimes are more prevalent in specific premises zones. Policymakers and law enforcement can utilize these insights to prioritize and allocate resources effectively, addressing high-risk crime zones.</p>
+<p><strong>Research Question 2</strong></p>
+<p>How does the age distribution of victims differ between severe and non-severe crimes?</p>
+<p>severe_crime_descriptions &lt;- c( “CRIMINAL HOMICIDE”, “RAPE, FORCIBLE”, “KIDNAPPING”, “ARSON”, “ASSAULT WITH DEADLY WEAPON, AGGRAVATED ASSAULT” ) crime_data_clean = read.csv(“Cleaned_Crime_Data.csv”)</p>
+<p>crime_data_clean<span class="math inline">\(Severe = ifelse(crime_data_clean\)</span>Crm.Cd.Desc %in% severe_crime_descriptions, 1, 0)</p>
+<p>table(crime_data_clean$Severe)</p>
+<p>severe_crimes = subset(crime_data_clean, Severe == 1) non_severe_crimes = subset(crime_data_clean, Severe == 0)</p>
+<p>if (nrow(severe_crimes) &gt; 1 &amp; nrow(non_severe_crimes) &gt; 1) { # Performing t-test t_test_result = t.test(severe_crimes<span class="math inline">\(Vict.Age, non_severe_crimes\)</span>Vict.Age, alternative = “two.sided”) print(t_test_result)</p>
+<p>ggplot(crime_data_clean, aes(x = as.factor(Severe), y = Vict.Age, fill = as.factor(Severe))) + geom_boxplot() + labs( title = “Victim Age Distribution by Crime Severity”, x = “Crime Severity (0 = Non-Severe, 1 = Severe)”, y = “Victim Age” ) + theme_minimal() + theme( plot.title = element_text(hjust = 0.5) # Center the title ) } else { print(“Not enough data for t-test”) }</p>
+<p>Conclusion:</p>
+<ul>
+<li><p>A Welch Two-Sample t-test was conducted to compare the mean ages of victims between severe and non-severe crimes.</p></li>
+<li><p>Results of the test showed:</p>
+<ul>
+<li><p>t = 21.833, df = 85503, p-value &lt; 2.2e-16.</p></li>
+<li><p>The confidence interval for the difference in means was between 1.59 and 1.91 years.</p></li>
+<li><p>The mean age of victims in severe crimes is 36.03, slightly higher than the mean age of victims in non-severe crimes, which is 34.27.</p></li>
+</ul></li>
+<li><p>The box plot visualization illustrates the age distributions for severe and non-severe crimes:</p>
+<ul>
+<li><p>Both distributions are similar in shape but shifted slightly upward for severe crimes.</p></li>
+<li><p>There are a few outliers, especially in the upper age range, indicating that severe crimes occasionally involve older victims. <strong>Answer to Research Question 2:</strong></p></li>
+</ul></li>
+</ul>
+<p>The analysis confirms that the age distribution of victims differs significantly between severe and non-severe crimes, with severe crimes involving slightly older victims on average. This insight could be useful for tailoring crime prevention and victim support programs to specific age groups based on the severity of crimes.</p>
+<p><strong>Research Question 3</strong></p>
+<p>Does the relationship between victim age and total crimes vary by victim sex?</p>
+<p>model_male = lm(Total_Crimes ~ Vict.Age, data = crime_by_sex_age %&gt;% filter(Vict.Sex == “Male”, !is.na(Total_Crimes), !is.na(Vict.Age)))</p>
+<p>model_female = lm(Total_Crimes ~ Vict.Age, data = crime_by_sex_age %&gt;% filter(Vict.Sex == “Female”, !is.na(Total_Crimes), !is.na(Vict.Age)))</p>
+<p>summary(model_male) summary(model_female)</p>
+<p>filtered_crime_table = crime %&gt;% filter(Vict.Age &gt;= 20 &amp; Vict.Age &lt;= 30, Vict.Sex %in% c(“M”, “F”)) %&gt;% group_by(Vict.Sex, Vict.Age) %&gt;% summarise(Total_Crimes = n(), .groups = ‘drop’) %&gt;% arrange(Vict.Sex, Vict.Age)</p>
+<p>print(filtered_crime_table)</p>
+<p>total_crimes = sum(crime$Vict.Sex %in% c(“M”, “F”))</p>
+<p>crime_data_by_sex = crime %&gt;% filter(Vict.Sex %in% c(“M”, “F”)) %&gt;% group_by(Vict.Sex) %&gt;% summarise(Total_Crimes = n(), .groups = ‘drop’) %&gt;%</p>
+<p>mutate(Percentage = Total_Crimes / total_crimes * 100)</p>
+<p>ggplot(crime_data_by_sex, aes(x = Vict.Sex, y = Percentage, fill = Vict.Sex)) + geom_bar(stat = “identity”, position = “dodge”, color = “black”) + # Adding black border geom_text(aes(label = sprintf(“%.2f%%”, Percentage)), vjust = -0.5, color = “black”, size = 3.5) + labs(title = “Total Crime Counts by Victim Sex (Scaled as % of Total)”, x = “Victim Sex”, y = “Percentage of Total Crimes (%)”) + scale_fill_manual(values = c(“M” = “pink”, “F” = “orange”)) + theme_minimal() + theme(axis.text.x = element_text(angle = 0), legend.title = element_blank(), plot.title = element_text(hjust = 0.5))</p>
+<p>Conclusion:</p>
+<ul>
+<li><p>The bar chart illustrates the total crimes committed across different victim sexes, scaled as a percentage of total crimes.</p></li>
+<li><p>The table displays a breakdown of victim ages and the corresponding total crimes for each sex.</p></li>
+<li><p>Linear regression models were fitted for both males and females to understand the relationship between victim age and total crimes.</p></li>
+</ul>
+<p>Results of Regression:</p>
+<ul>
+<li><p>For Females:</p>
+<ul>
+<li><p>Intercept: 2552.417 (baseline value)</p></li>
+<li><p>Victim Age Coefficient: -23.935 (indicating that total crimes decrease with age)</p></li>
+<li><p>Adjusted R-squared: 0.1905 (indicating the proportion of variance explained by the model)</p></li>
+<li><p>p-value: Highly significant, suggesting a valid relationship between victim age and total crimes.</p></li>
+</ul></li>
+<li><p>For Males:</p>
+<ul>
+<li><p>Intercept: 2535.905 (baseline value)</p></li>
+<li><p>Victim Age Coefficient: -22.951 (indicating a similar trend as with females)</p></li>
+<li><p>Adjusted R-squared: 0.259 (higher explanatory power than the female model)</p></li>
+<li><p>p-value: Also highly significant.</p></li>
+</ul></li>
+</ul>
+<p><strong>Answer to Research Question 3:</strong></p>
+<p>Yes, the relationship between victim age and total crimes does vary by victim sex, with younger individuals, particularly males, being more frequently targeted.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

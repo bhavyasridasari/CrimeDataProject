@@ -1,0 +1,49 @@
+---
+title: "Research Questions"
+---
+
+This page highlights the core research questions guiding the analysis of the **STAT Final Project**. Each question is carefully designed to explore key aspects of the dataset, providing insights into crime patterns, victim demographics, and their relationships with crime severity.
+
+## Research Question 1:What is the relationship between crime types and premises categories, and how are specific crime types distributed across different premises?
+
+**Why This Question?**\
+Understanding the relationship between crime types and premises can provide critical insights into which types of crimes are more prevalent in specific locations. This helps law enforcement and policymakers focus on high-risk areas and develop targeted prevention strategies.
+
+**Test Used**\
+A chi-squared test was used to determine whether a significant relationship exists between crime categories and premises categories. This test is appropriate for categorical data and evaluates independence between the two variables.
+
+**Visualization**\
+A heatmap was chosen to illustrate the frequency of different crime categories across premises types, providing a clear and intuitive representation of the distribution.
+
+## Research Question 2:How does the age distribution of victims differ between severe and non-severe crimes?
+
+**Why This Question?**\
+Exploring the age distribution of victims for severe and non-severe crimes is essential to identify which age groups are more vulnerable to severe crimes. This information can guide intervention programs and resource allocation.
+
+**Test Used**\
+An independent samples t-test was employed to compare the mean age of victims involved in severe crimes with those involved in non-severe crimes. This test assesses whether there is a statistically significant difference between the two groups.
+
+**Visualization**\
+A boxplot was selected to showcase the distribution and spread of victim ages for both severe and non-severe crimes, highlighting any differences between the groups.
+
+## Research Question 3:Does the relationship between victim age and total crimes vary by victim sex?
+
+**Why This Question?**\
+Understanding whether the relationship between victim age and total crimes differs by sex can provide insights into age-related vulnerabilities for male and female victims. This analysis helps in tailoring crime prevention measures more effectively.
+
+**Test Used**\
+Separate linear regression models were fitted for male and female victims to analyze the relationship between victim age and the total number of crimes. Linear regression is suitable for examining relationships between continuous variables.
+
+**Visualization**\
+Scatterplots with regression lines were used to visually represent the relationship between victim age and total crimes for males and females, making it easier to compare patterns across the sexes.
+
+## Research Question 4: Are Females More Likely to Be Victims of Severe Crimes?
+
+**Why This Question?**\
+This question is crucial to understanding gender disparities in victimization for severe crimes. It helps in assessing whether females are at a greater risk for severe crimes, providing data-driven insights to guide protective measures and awareness campaigns.
+
+**Test Used**\
+A chi-squared test was conducted to evaluate the association between victim sex and the severity of crimes. This test is suitable for analyzing categorical variables to determine dependence.
+
+**Visualization**\
+A stacked bar chart was used to show the proportions of severe and non-severe crimes across males and females, offering a straightforward visual comparison of victimization patterns.

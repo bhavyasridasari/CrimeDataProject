@@ -1,0 +1,41 @@
+---
+title: "About Us"
+---
+
+Welcome to our STAT Final Project Website! We are a team of three dedicated individuals with a passion for data analytics, statistical modeling, and impactful visualizations. Below, you can learn more about each of us, our skills, experiences, and how to connect with us.
+
+## Hi, Erica Kevin Mathews👋
+
+### About Me
+
+I have interned as a data analyst in banking sector before. My interests lie in social media analysis, healthcare analysis and marketing analysis. I have a Bachelor's degree in Computer Science Engineering with honors in Artificial Intelligence and Machine Leaning. In the search of picking up new skills and upping up my game in the steam of data science I am now currently studying Data Analytics Engineering at George Mason University.
+
+## My Skill Set
+
+-   Languages: SQL, Python, R, JAVA, C++
+
+-   Reporting Tools: Power BI, Microsoft 360, AWS
+
+## Hi, I’m Jeevani Bhaskar 👋
+
+### About Me
+
+I am on a quest to harness the power of data to unlock actionable insights. With a Bachelor's degree in Telecommunication Engineering from India, my fascination with data has guided my career path and academic pursuits. I am currently advancing my skills at George Mason University, where I'm pursuing a Master’s in Data Analytics. My professional experiences as a Data Scientist Trainee at TurningMinds\@AI and a Business Intelligence Developer at eMpulse Global have deepened my understanding and competence in analyzing and visualizing complex datasets.
+
+## My Skill Set
+
+-   Languages: Python, R, SQL
+-   Technologies and Tools: MSOffice, AWS, VSCode, GitHub, Microsoft Dynamics AX, Tableau, PowerBi, ZapBi
+-   Specializations: Data Analysis, Machine Learning, Deep Learning, Natural Language Processing, ComputerVision
+
+## Hi, I’m Bhayasri Dasari👋
+
+### About Me
+
+I embarked on a journey where data meets healthcare, combining my technical skills with a passion for improving health outcomes. With a Bachelor’s degree in Computer Science Engineering from India, I’ve always been driven by a passion for data architecture and healthcare data analytics. This passion led me across the globe to George Mason University, where I’m currently pursuing a Master’s in Data Analytics. Through this project, I blend my technical skills with a love for making sense of complex data, all with the aim of improving health outcomes. Come along as we navigate the world of lung cancer data and uncover insights that could pave the way for a healthier future.
+
+## My Skill Set
+
+-   Languages: SQL, Python, R
+
+-   Reporting Tools: Power BI, Tableau

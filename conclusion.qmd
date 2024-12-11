@@ -1,0 +1,15 @@
+---
+title: "Conclusion"
+---
+
+##Limitations
+
+Primarily, the focus of the dataset is on reported crime, which means it may not capture all the criminal activities. Also, the criminal activities that are not reported will not be recorded. Additionally, the dataset is limited to historical data which can affect the robustness of predictive models and trend analysis. The data provides insights at area level, more information like block level details could offer more precise targeting of resource. Furthermore, incorporating additional data influencing crime will improve accuracy and provide more insights.
+
+##Future Scope
+
+A more comprehensive understanding of crime determinants can be done through integrating more varied data sources. Fostering community engagement initiatives to aim crime prevention and awareness. Developing real-time data analysis will help in immediate threat identification and quicker responses.
+
+##Conclusion
+
+The project analyzes crime data to generate insights into patterns in criminal activity across various areas. The dataset is not only important in understanding frequency of crimes, but also their distribution across different regions and categories. The dataset includes multiple attributes offering multidimensional view of crime landscape. R is an excellent tool for robust statistical analysis and data visualization. It provides various packages like dpylr for data manipulation, ggplot2 for visualization and so on which enables understanding trends, patterns and anomalies within the data. Exploring the dataset and relationships between the attributes helped in identifying many different insights which provide critical insights for law enforcement resource allocation, assisting in proactive planning aiming preventive strategies.

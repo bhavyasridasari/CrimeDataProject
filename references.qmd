@@ -1,0 +1,27 @@
+---
+title: "References"
+---
+
+# References
+
+1.  **Crime Data Dataset**: United States Department of Justice, "Crime Data from 2020 to Present," \[Online\]. Available: <https://catalog.data.gov/dataset/crime-data-from-2020-to-present>. \[Accessed: Nov 5, 2024\].
+
+2.  **Chi-Square Tests**: Scribbr, "Chi-Square Tests: Explained," \[Online\]. Available: <https://www.scribbr.com/statistics/chi-square-tests/>. \[Accessed: Nov 13, 2024\].
+
+3.  **Statistical Tests**: Scribbr, "Statistical Tests: A Guide," \[Online\]. Available: <https://www.scribbr.com/statistics/statistical-tests/>. \[Accessed: Nov 15, 2024\].
+
+4.  **R Programming Language**: R Core Team, "R: A Language and Environment for Statistical Computing," R Foundation for Statistical Computing, Vienna, Austria, 2024. \[Online\]. Available: <https://www.r-project.org/>. \[Accessed: Nov 20, 2024\].
+
+5.  **ggplot2 Package**: H. Wickham, "ggplot2: Elegant Graphics for Data Analysis," Springer-Verlag New York, 2016. \[Online\]. Available: <https://ggplot2.tidyverse.org/>. \[Accessed: Nov 23, 2024\].
+
+6.  **dplyr Package**: H. Wickham et al., "dplyr: A Grammar of Data Manipulation," \[Online\]. Available: <https://dplyr.tidyverse.org>. \[Accessed: Nov 27, 2024\].
+
+7.  **lmtest Package**: A. Zeileis and T. Hothorn, "Diagnostic Checking in Regression Relationships," *R News*, vol. 2, no. 3, pp. 7–10, 2002. \[Online\]. Available: <https://cran.r-project.org/web/packages/lmtest/index.html>. \[Accessed: Dec 2, 2024\].
+
+8.  **reshape2 Package**: H. Wickham, "Reshaping Data with the reshape Package," *Journal of Statistical Software*, vol. 21, no. 12, pp. 1–20, 2007. \[Online\]. Available: <https://cran.r-project.org/web/packages/reshape2/index.html>. \[Accessed: Dec 2, 2024\].
+
+9.  **Statistical Methods Reference**: G. Casella and R. L. Berger, *Statistical Inference*, 2nd ed., Duxbury Press, 2002.
+
+10. **Visualization Techniques**: E. Tufte, *The Visual Display of Quantitative Information*, 2nd ed., Graphics Press, 2001.
+
+11. **Tidyverse Package Collection**: H. Wickham et al., "Welcome to the Tidyverse," *Journal of Open Source Software*, vol. 4, no. 43, p. 1686, 2019. \[Online\]. Available: <https://www.tidyverse.org/>. \[Accessed: Dec 2, 2024\].

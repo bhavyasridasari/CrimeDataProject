@@ -1,0 +1,351 @@
+---
+title: "Source Code"
+---
+
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(lmtest)
+crime = read.csv("C:/Users/bhavy/Documents/Fall 2024/STAT/Final Project/STAT FINAL PROJECT/Crime data.csv", stringsAsFactors = FALSE)
+head(crime)
+summary(crime)
+cat("Number of rows:", nrow(crime), "\n")
+cat("Number of columns:", ncol(crime), "\n")
+colnames(crime)
+crime = crime %>%
+  select(
+    -DR_NO,
+    -AREA,
+    -`TIME.OCC`, 
+    -`Part.1.2`,      
+    -Mocodes,       
+    -Status,        
+    -`Crm.Cd.2`,    
+    -`Crm.Cd.3`,    
+    -`Crm.Cd.4`,    
+    -`Cross.Street` 
+  )
+  #Printing the sum of na values present in the dataset
+sum(is.na(crime))
+
+crime = na.omit(crime)
+
+crime = crime %>% distinct()
+
+convert_dates = function(date_column) {
+  dates = as.Date(date_column, format = "%m/%d/%Y %H:%M")
+  if (any(is.na(dates))) {
+    dates[is.na(dates)] = as.Date(date_column[is.na(dates)], format = "%m/%d/%Y %I:%M %p")
+  }
+  return(dates)
+}
+
+crime$Date.Rptd = convert_dates(crime$Date.Rptd)
+crime$DATE.OCC = convert_dates(crime$DATE.OCC)
+
+summary(crime$Date.Rptd)
+summary(crime$DATE.OCC)
+
+
+crime$Vict.Age = ifelse(crime$Vict.Age < 0, NA, crime$Vict.Age)
+
+crime$LAT = ifelse(crime$LAT == 0, NA, crime$LAT)
+crime$LON = ifelse(crime$LON == 0, NA, crime$LON)
+
+summary(crime)
+
+cleaned_Crime_Data = crime
+
+write.csv(crime, "Cleaned_Crime_Data.csv", row.names = FALSE)
+head(cleaned_Crime_Data)
+
+crime_counts_per_area = crime %>%
+  group_by(AREA.NAME) %>%
+  summarise(Total_Crimes = n(), .groups = 'drop') %>%
+  arrange(desc(Total_Crimes))  # Sort by the number of crimes, highest first
+
+
+print(crime_counts_per_area)
+
+
+crime_data_clean = read.csv("Cleaned_Crime_Data.csv")
+
+
+crime_data_clean$Vict.Sex = recode(
+    crime_data_clean$Vict.Sex,
+    "M" = "Male",
+    "F" = "Female",
+    "X" = "Non-Binary",
+    "H" = "Other",
+    .default = "Unknown"
+)
+
+
+crime_filtered = crime_data_clean %>%
+    filter(Vict.Sex %in% c("Male", "Female", "Non-Binary"))
+
+crime_filtered = crime_filtered %>%
+    filter(Vict.Age > 0 & Vict.Age <= 100)
+
+crime_by_sex_age = crime_filtered %>%
+    group_by(Vict.Sex, Vict.Age) %>%
+    summarise(Total_Crimes = n(), .groups = "drop")
+
+
+ggplot(crime_by_sex_age, aes(x = Vict.Age, y = Total_Crimes, color = Vict.Sex)) +
+    geom_point(alpha = 0.6) +
+    labs(
+        title = "Crime Counts by Victim Age and Sex",
+        x = "Victim Age",
+        y = "Total Crimes",
+        color = "Victim Sex"
+    ) +
+    theme_minimal()
+    
+    crime_by_premise = crime %>%
+  group_by(Premis.Desc) %>%
+  summarise(Total_Crimes = n()) %>%
+  arrange(desc(Total_Crimes))
+
+
+
+ggplot(crime_by_premise[1:10, ], aes(x = reorder(Premis.Desc, -Total_Crimes), y = Total_Crimes)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(title = "Top 10 Crime Locations by Premise", x = "Type of Premise", y = "Number of Crimes") +
+  theme_minimal() +
+   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+   
+  filtered_data = crime %>%
+  filter(Vict.Age > 0 & Vict.Age < 100)
+
+
+top_crimes = filtered_data %>%
+  group_by(Crm.Cd.Desc) %>%
+  summarise(Total = n()) %>%
+  top_n(5, Total)
+
+
+filtered_data %>%
+  filter(Crm.Cd.Desc %in% top_crimes$Crm.Cd.Desc) %>%
+  ggplot(aes(x = Vict.Age, fill = Crm.Cd.Desc)) +
+  geom_histogram(bins = 30, position = "dodge") +
+  labs(title = "Distribution of Victim Age by Crime Type", x = "Victim Age", y = "Frequency") +
+  theme_minimal() 
+  
+  **Research Question 1**
+
+What is the relationship between crime types and premises categories, and how are specific crime types distributed across different premises?
+
+crime$Crime_Category = cut(crime$Crm.Cd, 
+                            breaks = c(0, 200, 400, 600, 800, 1000),
+                            labels = c("Category 1", "Category 2", "Category 3", "Category 4", "Category 5"))
+
+crime$Premises_Category = cut(crime$Premis.Cd, 
+                               breaks = c(0, 200, 400, 600, 800, 1000),
+                               labels = c("Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"))
+
+
+aggregated_table = table(crime$Crime_Category, crime$Premises_Category)
+
+
+aggregated_chisq_test = chisq.test(aggregated_table)
+
+print(aggregated_chisq_test)
+
+
+aggregated_df = as.data.frame(aggregated_table)
+colnames(aggregated_df) <- c("Crime_Category", "Premises_Category", "Frequency")
+
+
+ggplot(aggregated_df, aes(x = Premises_Category, y = Crime_Category, fill = Frequency)) +
+  geom_tile(color = "white") +  # Adding white borders for clarity
+  geom_text(aes(label = Frequency), color = "black", size = 3) +  # Adding labels to cells
+  scale_fill_gradient(low = "violet", high = "purple") +  
+  labs(
+    title = "Crime Types by Premises Categories (Heatmap)",
+    x = "Premises Categories",
+    y = "Crime Categories",
+    fill = "Frequency"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  
+    axis.text.x = element_text(angle = 45, hjust = 1),  
+    legend.position = "right"
+  )
+  
+  Conclusion:
+
+The research question investigated the relationship between crime types and premises categories and examined the distribution of specific crime types across various premises.
+
+Key Findings:
+
+-   The heatmap effectively illustrates the frequency distribution of crime types across premises categories.
+
+-   Darker shades in the heatmap indicate higher crime frequencies, providing a clear visual representation of hotspots for specific crime types.
+
+-   squared test yielded a statistically significant result . This indicates that there is a significant association between the type of crime and the category of premises
+
+**Interpretation:**
+
+-   Crimes in Category 4 (e.g., Zone 3) show the highest frequency, indicating a potential hotspot or higher incidence in that combination of crime and premises.
+
+-   Similarly, Category 2 has a noticeable frequency across multiple premises, particularly in zones associated with residential or commonly populated areas.
+
+-   Less frequent crime categories (e.g., Category 1 and Category 5) appear to be concentrated in limited premises zones.
+
+**Answer to Research Question 1:** The analysis confirms a significant relationship between crime types and premises categories. The frequency distribution suggests that certain crimes are more prevalent in specific premises zones. Policymakers and law enforcement can utilize these insights to prioritize and allocate resources effectively, addressing high-risk crime zones.
+
+**Research Question 2**
+
+How does the age distribution of victims differ between severe and non-severe crimes?
+
+severe_crime_descriptions <- c(
+  "CRIMINAL HOMICIDE",
+  "RAPE, FORCIBLE",
+  "KIDNAPPING",
+  "ARSON",
+  "ASSAULT WITH DEADLY WEAPON, AGGRAVATED ASSAULT"
+)
+crime_data_clean = read.csv("Cleaned_Crime_Data.csv")
+
+
+crime_data_clean$Severe = ifelse(crime_data_clean$Crm.Cd.Desc %in% severe_crime_descriptions, 1, 0)
+
+
+table(crime_data_clean$Severe)
+
+
+severe_crimes = subset(crime_data_clean, Severe == 1)
+non_severe_crimes = subset(crime_data_clean, Severe == 0)
+
+
+if (nrow(severe_crimes) > 1 & nrow(non_severe_crimes) > 1) {
+  # Performing t-test
+  t_test_result = t.test(severe_crimes$Vict.Age, non_severe_crimes$Vict.Age, alternative = "two.sided")
+  print(t_test_result)
+  
+
+ggplot(crime_data_clean, aes(x = as.factor(Severe), y = Vict.Age, fill = as.factor(Severe))) +
+  geom_boxplot() +
+  labs(
+    title = "Victim Age Distribution by Crime Severity",
+    x = "Crime Severity (0 = Non-Severe, 1 = Severe)",
+    y = "Victim Age"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5)  # Center the title
+  )
+} else {
+  print("Not enough data for t-test")
+}
+
+
+Conclusion:
+
+-   A Welch Two-Sample t-test was conducted to compare the mean ages of victims between severe and non-severe crimes.
+
+-   Results of the test showed:
+
+    -   t = 21.833, df = 85503, p-value \< 2.2e-16.
+
+    -   The confidence interval for the difference in means was between 1.59 and 1.91 years.
+
+    -   The mean age of victims in severe crimes is 36.03, slightly higher than the mean age of victims in non-severe crimes, which is 34.27.
+
+-   The box plot visualization illustrates the age distributions for severe and non-severe crimes:
+
+    -   Both distributions are similar in shape but shifted slightly upward for severe crimes.
+
+    -   There are a few outliers, especially in the upper age range, indicating that severe crimes occasionally involve older victims.
+    **Answer to Research Question 2:**
+
+The analysis confirms that the age distribution of victims differs significantly between severe and non-severe crimes, with severe crimes involving slightly older victims on average. This insight could be useful for tailoring crime prevention and victim support programs to specific age groups based on the severity of crimes.
+
+**Research Question 3**
+
+Does the relationship between victim age and total crimes vary by victim sex?
+
+
+model_male = lm(Total_Crimes ~ Vict.Age, 
+                 data = crime_by_sex_age %>% 
+                        filter(Vict.Sex == "Male", !is.na(Total_Crimes), !is.na(Vict.Age)))
+
+model_female = lm(Total_Crimes ~ Vict.Age, 
+                   data = crime_by_sex_age %>% 
+                          filter(Vict.Sex == "Female", !is.na(Total_Crimes), !is.na(Vict.Age)))
+
+
+summary(model_male)
+summary(model_female)
+
+filtered_crime_table = crime %>%
+  filter(Vict.Age >= 20 & Vict.Age <= 30, Vict.Sex %in% c("M", "F")) %>%
+  group_by(Vict.Sex, Vict.Age) %>%
+  summarise(Total_Crimes = n(), .groups = 'drop') %>%
+  arrange(Vict.Sex, Vict.Age)
+
+print(filtered_crime_table)
+
+
+total_crimes = sum(crime$Vict.Sex %in% c("M", "F"))
+
+crime_data_by_sex = crime %>%
+  filter(Vict.Sex %in% c("M", "F")) %>%
+  group_by(Vict.Sex) %>%
+  summarise(Total_Crimes = n(), .groups = 'drop') %>%
+
+  mutate(Percentage = Total_Crimes / total_crimes * 100)  
+
+
+ggplot(crime_data_by_sex, aes(x = Vict.Sex, y = Percentage, fill = Vict.Sex)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") + # Adding black border
+  geom_text(aes(label = sprintf("%.2f%%", Percentage)), 
+            vjust = -0.5,
+            color = "black", size = 3.5) +
+  labs(title = "Total Crime Counts by Victim Sex (Scaled as % of Total)",
+       x = "Victim Sex",
+       y = "Percentage of Total Crimes (%)") +
+  scale_fill_manual(values = c("M" = "pink", "F" = "orange")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 0),
+        legend.title = element_blank(),
+        plot.title = element_text(hjust = 0.5))
+
+
+Conclusion:
+
+-   The bar chart illustrates the total crimes committed across different victim sexes, scaled as a percentage of total crimes.
+
+-   The table displays a breakdown of victim ages and the corresponding total crimes for each sex.
+
+-   Linear regression models were fitted for both males and females to understand the relationship between victim age and total crimes.
+
+Results of Regression:
+
+-   For Females:
+
+    -   Intercept: 2552.417 (baseline value)
+
+    -   Victim Age Coefficient: -23.935 (indicating that total crimes decrease with age)
+
+    -   Adjusted R-squared: 0.1905 (indicating the proportion of variance explained by the model)
+
+    -   p-value: Highly significant, suggesting a valid relationship between victim age and total crimes.
+
+-   For Males:
+
+    -   Intercept: 2535.905 (baseline value)
+
+    -   Victim Age Coefficient: -22.951 (indicating a similar trend as with females)
+
+    -   Adjusted R-squared: 0.259 (higher explanatory power than the female model)
+
+    -   p-value: Also highly significant.
+
+**Answer to Research Question 3:**
+
+Yes, the relationship between victim age and total crimes does vary by victim sex, with younger individuals, particularly males, being more frequently targeted.

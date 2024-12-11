@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: docs
+website:
+  title: "STAT Final Project"
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Home"
+      - href: introduction.qmd
+        text: "Introduction"
+      - href: research_questions.qmd
+        text: "Research Questions"
+      - href: methodology.qmd
+        text: "Methodology & Visualizations"
+      - href: conclusion.qmd
+        text: "Conclusion"
+      - href: code.qmd
+        text: "Source Code"
+      - href: references.qmd
+        text: "References"
+      - href: about.qmd
+        text: "About Us"
+      
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 2
+
